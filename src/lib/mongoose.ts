@@ -11,10 +11,16 @@ interface GlobalMongoose {
   promise: Promise<mongoose.Connection> | null;
 }
 
-let cached: GlobalMongoose = (global as any).mongoose;
+// Create a typed global interface for mongoose caching
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: GlobalMongoose | undefined;
+}
+
+let cached: GlobalMongoose = global.mongoose || { conn: null, promise: null };
 
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
 async function connectDB(): Promise<mongoose.Connection> {

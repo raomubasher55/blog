@@ -29,35 +29,43 @@ export default function BlogPostTracker({ title, slug }: BlogPostTrackerProps) {
 
       if (scrollPercent >= 25 && !tracked25) {
         tracked25 = true;
-        window.gtag && window.gtag('event', 'scroll_depth_25', {
-          event_category: 'engagement',
-          event_label: title,
-          custom_parameter: slug,
-        });
+        if (window.gtag) {
+          window.gtag('event', 'scroll_depth_25', {
+            event_category: 'engagement',
+            event_label: title,
+            custom_parameter: slug,
+          });
+        }
       }
       if (scrollPercent >= 50 && !tracked50) {
         tracked50 = true;
-        window.gtag && window.gtag('event', 'scroll_depth_50', {
-          event_category: 'engagement',
-          event_label: title,
-          custom_parameter: slug,
-        });
+        if (window.gtag) {
+          window.gtag('event', 'scroll_depth_50', {
+            event_category: 'engagement',
+            event_label: title,
+            custom_parameter: slug,
+          });
+        }
       }
       if (scrollPercent >= 75 && !tracked75) {
         tracked75 = true;
-        window.gtag && window.gtag('event', 'scroll_depth_75', {
-          event_category: 'engagement',
-          event_label: title,
-          custom_parameter: slug,
-        });
+        if (window.gtag) {
+          window.gtag('event', 'scroll_depth_75', {
+            event_category: 'engagement',
+            event_label: title,
+            custom_parameter: slug,
+          });
+        }
       }
       if (scrollPercent >= 100 && !tracked100) {
         tracked100 = true;
-        window.gtag && window.gtag('event', 'scroll_depth_100', {
-          event_category: 'engagement',
-          event_label: title,
-          custom_parameter: slug,
-        });
+        if (window.gtag) {
+          window.gtag('event', 'scroll_depth_100', {
+            event_category: 'engagement',
+            event_label: title,
+            custom_parameter: slug,
+          });
+        }
       }
     };
 

@@ -10,10 +10,10 @@ export async function getAllPosts(): Promise<BlogPostType[]> {
       .sort({ date: -1 })
       .lean();
     
-    return posts.map((post: any) => ({
+    return posts.map((post: Record<string, unknown>) => ({
       ...post,
-      _id: post._id.toString(),
-      slug: post.slug || generateSlug(post.title)
+      _id: (post._id as { toString: () => string }).toString(),
+      slug: (post.slug as string) || generateSlug(post.title as string)
     })) as BlogPostType[];
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -39,9 +39,9 @@ export async function getPostBySlug(slug: string): Promise<BlogPostType | null> 
     if (!post) return null;
     
     return {
-      ...(post as any),
-      _id: (post as any)._id.toString(),
-      slug: (post as any).slug || generateSlug((post as any).title)
+      ...(post as Record<string, unknown>),
+      _id: ((post as Record<string, unknown>)._id as { toString: () => string }).toString(),
+      slug: ((post as Record<string, unknown>).slug as string) || generateSlug((post as Record<string, unknown>).title as string)
     } as BlogPostType;
   } catch (error) {
     console.error('Error fetching post by slug:', error);

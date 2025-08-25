@@ -3,7 +3,7 @@ import { getAllPosts } from '@/lib/blog';
 import type { BlogPost } from '@/types/blog';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010';
   
   let posts: BlogPost[] = [];
   try {

@@ -10,13 +10,11 @@ import {
   Bot, 
   Code, 
   Zap, 
-  Database, 
   Atom, 
   Link as LinkIcon,
   Settings,
   FileText,
   Heart,
-  ExternalLink,
   Menu
 } from "lucide-react";
 
@@ -47,12 +45,10 @@ export default async function Home() {
   }
 
   const featuredPost = posts[0];
-  const recentPosts = posts.slice(1, 4);
-  const trendingPosts = posts.slice(4, 8);
   const allPosts = posts.slice(1, 12);
 
   // Organization Schema for homepage
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010';
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'TechBlog';
   const twitterHandle = process.env.TWITTER_HANDLE || '@techblog';
   
@@ -229,7 +225,7 @@ export default async function Home() {
           </Flex>
 
           <Grid columns={{ initial: '1', sm: '2', lg: '3' }} gap="8">
-            {allPosts.map((post, index) => (
+            {allPosts.map((post) => (
               <Card key={post._id} className="hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-orange-200">
                 <Box p="6">
                   <Flex direction="column" gap="4" height="100%">

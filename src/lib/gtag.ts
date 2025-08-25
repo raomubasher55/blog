@@ -31,7 +31,7 @@ export const event = ({
 };
 
 // Track blog post reading
-export const trackBlogPost = (title: string, slug: string) => {
+export const trackBlogPost = (title: string, _slug: string) => {
   event({
     action: 'view_blog_post',
     category: 'engagement',
@@ -59,6 +59,6 @@ export const trackAdminAction = (action: string) => {
 // Declare gtag function for TypeScript
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
+    gtag: (...args: unknown[]) => void;
   }
 }

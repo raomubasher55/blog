@@ -5,7 +5,7 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import Analytics from "@/components/Analytics";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010';
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'TechBlog';
 const googleVerification = process.env.GOOGLE_VERIFICATION_CODE;
 const twitterHandle = process.env.TWITTER_HANDLE || '@techblog';
@@ -63,14 +63,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className="font-sans antialiased">
+        {/* Google Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
-      </head>
-      <body className="font-sans antialiased">
+        
         {/* Google Analytics */}
         {GA_TRACKING_ID && (
           <>

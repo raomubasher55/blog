@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010';
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'TechBlog';
 
   if (!post) {
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 function generateStructuredData(post: BlogPost) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010';
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'TechBlog';
   const postUrl = `${siteUrl}/blog/${post.slug || post._id}`;
 
@@ -90,7 +90,7 @@ function generateStructuredData(post: BlogPost) {
   };
 
   if (post.faqs && post.faqs.length > 0) {
-    (structuredData['@graph'] as any[]).push({
+    (structuredData['@graph'] as Array<Record<string, unknown>>).push({
       '@type': 'FAQPage',
       '@id': `${postUrl}#faq`,
       mainEntity: post.faqs.map((faq) => ({
