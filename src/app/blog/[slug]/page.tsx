@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
-import { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/types/blog';
 import { Calendar, MessageCircle, ExternalLink, ArrowLeft } from 'lucide-react';
 
 interface PageProps {
@@ -90,7 +90,7 @@ function generateStructuredData(post: BlogPost) {
   };
 
   if (post.faqs && post.faqs.length > 0) {
-    structuredData['@graph'].push({
+    (structuredData['@graph'] as any[]).push({
       '@type': 'FAQPage',
       '@id': `${postUrl}#faq`,
       mainEntity: post.faqs.map((faq) => ({

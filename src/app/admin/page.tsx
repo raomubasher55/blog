@@ -266,7 +266,7 @@ export default function AdminPanel() {
           size={{ initial: '6', sm: '8' }} 
           className="flex items-center gap-2 text-center sm:text-left"
         >
-          <Settings size={{ base: 24, sm: 32 }} className="text-orange-500" />
+          <Settings size={28} className="text-orange-500" />
           Admin Panel
         </Heading>
         <Button 
@@ -283,7 +283,7 @@ export default function AdminPanel() {
       {posts.length === 0 ? (
         <Card size="3" className="text-center py-8 sm:py-16">
           <Box className="px-4">
-            <Plus size={{ base: 48, sm: 64 }} className="text-gray-400 mx-auto mb-4" />
+            <Plus size={56} className="text-gray-400 mx-auto mb-4" />
             <Heading size={{ initial: '5', sm: '6' }} mb="4">No Posts Yet</Heading>
             <Text size={{ initial: '2', sm: '3' }} color="gray" mb="6" className="max-w-md mx-auto">
               Start building your blog by creating your first post. Share your insights and expertise with the world!

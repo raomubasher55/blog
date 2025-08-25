@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import Analytics from "@/components/Analytics";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000';
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'TechBlog';
 const googleVerification = process.env.GOOGLE_VERIFICATION_CODE;
 const twitterHandle = process.env.TWITTER_HANDLE || '@techblog';
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -68,7 +71,28 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
+        {/* Google Analytics */}
+        {GA_TRACKING_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
+        
         <Theme>
+          <Analytics />
           {children}
         </Theme>
       </body>
