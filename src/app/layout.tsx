@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import { Suspense } from "react";
 import Analytics from "@/components/Analytics";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010';
@@ -11,9 +12,10 @@ const googleVerification = process.env.GOOGLE_VERIFICATION_CODE;
 const twitterHandle = process.env.TWITTER_HANDLE || '@techblog';
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
+export const viewport = 'width=device-width, initial-scale=1';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  viewport: 'width=device-width, initial-scale=1',
   title: {
     template: `%s | ${siteName}`,
     default: `${siteName} - Latest Tech News & Insights`
@@ -95,7 +97,9 @@ export default function RootLayout({
         )}
         
         <Theme>
-          <Analytics />
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
           {children}
         </Theme>
       </body>

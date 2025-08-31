@@ -11,7 +11,7 @@ interface BlogPostTrackerProps {
 export default function BlogPostTracker({ title, slug }: BlogPostTrackerProps) {
   useEffect(() => {
     // Track blog post view
-    trackBlogPost(title, slug);
+    trackBlogPost(title);
 
     // Track scroll depth
     let maxScroll = 0;

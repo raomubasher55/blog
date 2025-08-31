@@ -31,7 +31,7 @@ export const event = ({
 };
 
 // Track blog post reading
-export const trackBlogPost = (title: string, _slug: string) => {
+export const trackBlogPost = (title: string) => {
   event({
     action: 'view_blog_post',
     category: 'engagement',

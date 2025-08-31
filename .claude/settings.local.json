@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm run lint)",
       "Bash(npx tsc:*)",
-      "Bash(timeout 30s npm run build)"
+      "Bash(timeout 30s npm run build)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }
